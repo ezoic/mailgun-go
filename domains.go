@@ -266,13 +266,14 @@ func (mg *MailgunImpl) VerifyAndReturnDomain(ctx context.Context, domain string)
 
 // Optional parameters when creating a domain
 type CreateDomainOptions struct {
-	Password           string
-	SpamAction         SpamAction
-	Wildcard           bool
-	ForceDKIMAuthority bool
-	DKIMKeySize        int
-	IPS                []string
-	WebScheme          string
+	Password                   string
+	SpamAction                 SpamAction
+	Wildcard                   bool
+	ForceDKIMAuthority         bool
+	DKIMKeySize                int
+	IPS                        []string
+	WebScheme                  string
+	UseAutomaticSenderSecurity bool
 }
 
 // CreateDomain instructs Mailgun to create a new domain for your account.
@@ -310,6 +311,9 @@ func (mg *MailgunImpl) CreateDomain(ctx context.Context, name string, opts *Crea
 		}
 		if opts.WebScheme != "" {
 			payload.addValue("web_scheme", string(opts.WebScheme))
+		}
+		if opts.UseAutomaticSenderSecurity {
+			payload.addValue("use_automatic_sender_security", boolToString(opts.UseAutomaticSenderSecurity))
 		}
 	}
 	var resp DomainResponse
