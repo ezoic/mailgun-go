@@ -387,13 +387,16 @@ func (mg *MailgunImpl) UpdateUnsubscribeTracking(ctx context.Context, domain, ac
 	return err
 }
 
-func (mg *MailgunImpl) UpdateOpenTracking(ctx context.Context, domain, active string) error {
+func (mg *MailgunImpl) UpdateOpenTracking(ctx context.Context, domain, active string, placeAtTop *bool) error {
 	r := newHTTPRequest(generatePublicApiUrl(mg, domainsEndpoint) + "/" + domain + "/tracking/open")
 	r.setClient(mg.Client())
 	r.setBasicAuth(basicAuthUser, mg.APIKey())
 
 	payload := newUrlEncodedPayload()
 	payload.addValue("active", active)
+	if placeAtTop != nil {
+		payload.addValue("place_at_the_top", boolToString(*placeAtTop))
+	}
 	_, err := makePutRequest(ctx, r, payload)
 	return err
 }

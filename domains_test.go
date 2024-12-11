@@ -134,7 +134,7 @@ func TestDomainTracking(t *testing.T) {
 	require.False(t, info.Click.Active)
 
 	// Open Tracking
-	err = mg.UpdateOpenTracking(ctx, testDomain, "no")
+	err = mg.UpdateOpenTracking(ctx, testDomain, "no", nil)
 	require.NoError(t, err)
 
 	info, err = mg.GetDomainTracking(ctx, testDomain)
