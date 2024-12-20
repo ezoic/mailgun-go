@@ -120,6 +120,7 @@ const (
 	accountsEndpoint     = "accounts"
 	subaccountsEndpoint  = "subaccounts"
 	OnBehalfOfHeader     = "X-Mailgun-On-Behalf-Of"
+	x509Endpoint         = "x509"
 )
 
 // Mailgun defines the supported subset of the Mailgun API.
@@ -266,6 +267,10 @@ type Mailgun interface {
 
 	SetOnBehalfOfSubaccount(subaccountId string)
 	RemoveOnBehalfOfSubaccount()
+
+	GetX509Status(ctx context.Context, domain string) (*GetX509Response, error)
+	RegenerateX509(ctx context.Context, domain string) (*RegenerateX509Response, error)
+	InitiateX509(ctx context.Context, domain string) (*InitiateX509X509Response, error)
 }
 
 // MailgunImpl bundles data needed by a large number of methods in order to interact with the Mailgun API.

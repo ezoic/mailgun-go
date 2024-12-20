@@ -28,6 +28,7 @@ type Domain struct {
 	SpamAction   SpamAction  `json:"spam_action"`
 	State        string      `json:"state"`
 	WebScheme    string      `json:"web_scheme"`
+	WebPrefix    string      `json:"web_prefix"`
 }
 
 // DNSRecord structures describe intended records to properly configure your domain for use with Mailgun.
