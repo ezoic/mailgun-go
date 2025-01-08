@@ -79,6 +79,7 @@ type DeliveryStatus struct {
 	EnhancedCode        string  `json:"enhanced-code,omitempty"`
 	MxHost              string  `json:"mx-host,omitempty"`
 	RetrySeconds        int     `json:"retry-seconds,omitempty"`
+	BounceType          string  `json:"bounce-type,omitempty"`
 	CertificateVerified *bool   `json:"certificate-verified,omitempty"`
 	TLS                 *bool   `json:"tls,omitempty"`
 	Utf8                *bool   `json:"utf8,omitempty"`
